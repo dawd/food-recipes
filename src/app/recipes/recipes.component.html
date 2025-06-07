@@ -1,0 +1,22 @@
+<div class="row">
+  <ng-container *ngIf="recipesList.length > 0; else noDataTemplate">
+    <div class="col-lg-3" *ngFor="let recipe of recipesList">
+      <a class="mb-3 d-block text-decoration-none text-black" [routerLink]="['/recipe-details', recipe.id]" >
+        <img class="img-fluid" [src]="recipe.image" [alt]="recipe.name" />
+        <div class="card-body mt-2">
+          <h4 class="card-title h5 fw-bold">{{ recipe.name }}</h4>
+          <div class="d-flex align-items-center gap-1 flex-wrap rounded-2">
+            <span *ngFor="let tag of recipe.tags" class="bg-light small px-2 py-1 rounded-2">
+              {{ tag }}
+              </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+  <ng-template #noDataTemplate>
+    <div class="d-flex align-items-center justify-content-center">
+      <span class="display-6">Data is loading...</span>
+    </div>
+  </ng-template>
+</div>

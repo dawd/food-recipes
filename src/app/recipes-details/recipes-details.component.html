@@ -1,0 +1,77 @@
+<ng-container *ngIf="recipe; else noDataTemplate">
+  <div class="row">
+    <div class="col-lg-6">
+      <img
+        [src]="recipe.image"
+        [alt]="recipe.name"
+        class="img-fluid mb-3 rounded-3"
+      />
+    </div>
+
+    <div class="col-lg-6">
+      <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+        <h2 class="fw-bold mb-0">{{ recipe.name }}</h2>
+        <small class="bg-light small px-2 py-1 rounded-3">
+          {{ recipe.cuisine }}
+        </small>
+        <small class="bg-light small px-2 py-1 rounded-3">
+          {{ recipe.mealType }}
+        </small>
+      </div>
+
+      <div class="border d-flex gap-5 flex-wrap flex-row p-3 rounded-3 mb-3">
+        <div class="d-flex flex-column gap-1">
+          <span class="small text-muted">Difficulty</span>
+          <span class="small fw-bold">{{ recipe.difficulty }}</span>
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span class="small text-muted">Preparation Time</span>
+          <span class="small fw-bold"
+            >{{ recipe.prepTimeMinutes }} (Minutes)</span
+          >
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span class="small text-muted">Cook Time</span>
+          <span class="small fw-bold">
+            {{ recipe.cookTimeMinutes }} (Minutes)
+          </span>
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span class="small text-muted">Rating</span>
+          <span class="small fw-bold">
+            {{ recipe.rating }} ⭐️ - ({{ recipe.reviewCount }} review)
+          </span>
+        </div>
+      </div>
+
+      <div class="border p-3 rounded-3 mb-3">
+        <h3 class="fw-bold fs-5 mb-2">Instructions</h3>
+        <ul class="list-unstyled mb-0">
+          <li *ngFor="let instruction of recipe.instructions; let i = index">
+            {{ i + 1 }} - {{ instruction }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="border p-3 rounded-3 mb-3">
+        <h3 class="fw-bold fs-5 mb-2">Ingredients</h3>
+        <ul class="list-inline d-flex flex-wrap gap-1 mb-0">
+          <li
+            *ngFor="let ingredient of recipe.ingredients"
+            class="list-inline-item px-3 py-1 bg-light small rounded-2 m-0"
+          >
+            {{ ingredient }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #noDataTemplate>
+  <div class="d-flex align-items-center justify-content-center">
+    <span class="display-6">Data is loading...</span>
+  </div>
+</ng-template>
